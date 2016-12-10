@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour {
     public void SwitchCarOn()
     {
         FPSCamera.tag = "Untagged";
-        FPSController.transform.parent = CarController.transform;
+  //      FPSController.transform.parent = CarController.transform;
         FPSController.gameObject.SetActive(false);
         CarController.drive = true;
         CarController.enabled = true;
@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour {
         FPSCamera.tag = "MainCamera";
         drivingCamera.tag = "Untagged";
         FPSController.gameObject.SetActive(true);
-        FPSController.transform.parent = null;
+   //     FPSController.transform.parent = null;
         state = PlayerState.Walking;
     }
 
