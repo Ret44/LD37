@@ -19,10 +19,11 @@ public class PlayerController : MonoBehaviour {
     public Camera drivingCamera; 
     public Camera FPSCamera;
     public CarController CarController;
+
+    public CarAIControl ai;
     public UnityEngine.UI.Text uiTooltip;
 
     public GameObject selectedObj;
-   
 
     void Awake() {
         instance = this;
@@ -30,7 +31,7 @@ public class PlayerController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+        ai.SetTarget(CarController.gameObject.transform);
 	}
 	
     public void SwitchCarOn()
@@ -40,6 +41,7 @@ public class PlayerController : MonoBehaviour {
         FPSController.gameObject.SetActive(false);
         CarController.drive = true;
         CarController.enabled = true;
+        CarController.GetComponent<CarUserControl>().enabled = true;
         drivingCamera.enabled = true;
         state = PlayerState.Driving;
         drivingCamera.tag = "MainCamera";
@@ -52,6 +54,7 @@ public class PlayerController : MonoBehaviour {
         drivingCamera.enabled = false;
         FPSCamera.tag = "MainCamera";
         drivingCamera.tag = "Untagged";
+        CarController.GetComponent<CarUserControl>().enabled = false;
         FPSController.gameObject.SetActive(true);
    //     FPSController.transform.parent = null;
         state = PlayerState.Walking;
